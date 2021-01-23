@@ -953,7 +953,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var form = "\n\n<form>\n<h1>Client Timesheet</h1>\n\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p>\n    <input type=\"text\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter staff names\" name=\"name\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <button type=\"button\" id=\"create-timesheet\"  class=\"btn btn-primary\">Create Timesheet</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update Timesheet</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete Timesheet</button>\n  </form>\n";
+var form = "\n\n<form>\n<h1>Client Timesheet</h1>\n\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an existing timesheet</p>\n    <input type=\"text\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter staff names\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create Timesheet</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update Timesheet</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete Timesheet</button>\n  </form>\n  </div>\n";
 
 var timesheetForm = function timesheetForm() {
   // This logic below gets all categories and loads it in the dropdown
@@ -992,9 +992,10 @@ var timesheetForm = function timesheetForm() {
                 completed: $("input[name=\"completed\"]:checked").val(),
                 visitId: $("#visit").val()
               };
-              console.log("request body: ", requestBody); //Make a POST request to the server to create a fruit
+              console.log("request body: ", requestBody);
+              $("requestbody").append(requestBody); //Make a POST request to the server to create a fruit
 
-              _context.next = 5;
+              _context.next = 6;
               return $.ajax({
                 type: "POST",
                 url: "/api/timesheet/new-timesheet",
@@ -1002,12 +1003,12 @@ var timesheetForm = function timesheetForm() {
                 data: JSON.stringify(requestBody)
               });
 
-            case 5:
+            case 6:
               response = _context.sent;
               // Create a pop up alert in the UI to inform the user that fruit was created
               window.alert("Timesheet Created!");
 
-            case 7:
+            case 8:
             case "end":
               return _context.stop();
           }
@@ -1197,7 +1198,7 @@ var _loginUser = _interopRequireDefault(require("./user/loginUser"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-$("body").prepend((0, _loginUser.default)());
+$("body").append((0, _loginUser.default)());
 },{"regenerator-runtime/runtime":"node_modules/regenerator-runtime/runtime.js","./user/loginUser":"src/user/loginUser.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -1226,7 +1227,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49724" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62333" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
