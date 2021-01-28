@@ -5,23 +5,26 @@ const form = `
 <div class="form-group">
   <div class="form-group">
     <label for="jobId">Job ID</label>
-    <p>Use this to update or delete an exsiting timesheet</p>
+    <p>Use this to update or delete an exsiting timesheet</p> 
     <input type="text" id="jobid" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
     
   </div>
 
     <label for="name">Staff Attendance</label>
+    <br/>
     <input type="text" id="staff" class="form-control" id="name" placeholder="Enter staff names" name="name">
     
   </div>
 
   <div class="form-group">
     <label for="time">Time Spent On Site</label>
+    <br/>
     <input type="text" id="time" class="form-control" id="time" placeholder="Arrival/Departure Time" name="time">
   </div>
 
   <div class="form-group">
     <label for="notes">Notes</label>
+    <br/>
     <input type="text" id="notes" class="form-control" id="notes" placeholder="Notes From Visit" name="notes">
   </div>
 
