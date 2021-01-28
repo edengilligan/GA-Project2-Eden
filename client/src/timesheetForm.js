@@ -2,7 +2,6 @@ const form = `
 
 <form>
 <h1>Client Timesheet</h1>
-
 <div class="form-group">
   <div class="form-group">
     <label for="jobId">Job ID</label>
