@@ -2,16 +2,17 @@ const form = `
 
 <form>
 <h1>Client Timesheet</h1>
-
 <div class="form-group">
   <div class="form-group">
     <label for="jobId">Job ID</label>
     <p>Use this to update or delete an exsiting timesheet</p>
     <input type="text" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
+    
   </div>
 
     <label for="name">Staff Attendance</label>
     <input type="text" class="form-control" id="name" placeholder="Enter staff names" name="name">
+    
   </div>
 
   <div class="form-group">
@@ -39,10 +40,12 @@ const form = `
     <label for="visitId">Visit Type</label>
     <select name="visitId" id="visit"></select>
   </div>
-  <button type="button" id="create-timesheet"  class="btn btn-primary">Create Timesheet</button>
+  <div class="form-group">
+  <button type="button" id="create-timesheet" class="btn btn-primary">Create Timesheet</button>
   <button  type="button" id="update-timesheet"  class="btn btn-primary">Update Timesheet</button>
   <button  type="button" id="delete-timesheet"  class="btn btn-primary">Delete Timesheet</button>
   </form>
+  </div>
 `;
 
 const timesheetForm = () => {
@@ -80,6 +83,8 @@ const timesheetForm = () => {
       visitId: $("#visit").val(),
     };
 console.log("request body: ", requestBody); 
+
+$("requestbody").append(requestBody);
 
 
     //Make a POST request to the server to create a fruit
@@ -136,5 +141,7 @@ console.log("request body: ", requestBody);
 
   return form;
 };
+
+
 
 export default timesheetForm;
