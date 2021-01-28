@@ -8,18 +8,18 @@ Clicking on the Register New User button loads the newUser.js form
 
 const form = `
   <form id="login-user">
-  <h1>Staff Portal Login</h1>
+  <h4>Staff Portal Login</h4>
     <div class="form-group">
       <label for="Staff username">Username</label>
-      <input type="text" class="form-control" placeholder="Please enter username" name="username">
+      <input type="text" id="username" class="form-control" placeholder="Please enter username" name="username">
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" class="form-control" placeholder="Please enter password" name="password">
+      <input type="password" id="password" class="form-control" placeholder="Please enter password" name="password">
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button id="enter" type="submit" class="btn btn-primary">Submit</button>
   </form>
-  <button id="register-new-user" class="btn btn-primary">Register new user </button>
+  <button id="register-new-user" class="btn btn-primary">Register</button>
 `;
 
 const loginUser = () => {
