@@ -1,3 +1,4 @@
+
 const form = `
 
 <form>
@@ -5,31 +6,28 @@ const form = `
 <div class="form-group">
   <div class="form-group">
     <label for="jobId">Job ID</label>
-    <p>Use this to update or delete an exsiting timesheet</p> 
-    <input type="text" id="jobid" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
+    <p>Use this to update or delete an exsiting timesheet</p>
+    <input type="text" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
     
   </div>
 
     <label for="name">Staff Attendance</label>
-    <br/>
-    <input type="text" id="staff" class="form-control" id="name" placeholder="Enter staff names" name="name">
+    <input type="text" class="form-control" id="name" placeholder="Enter Staff Names" name="name">
     
   </div>
 
   <div class="form-group">
     <label for="time">Time Spent On Site</label>
-    <br/>
-    <input type="text" id="time" class="form-control" id="time" placeholder="Arrival/Departure Time" name="time">
+    <input type="text" class="form-control" id="time" placeholder="Arrival/Departure Time" name="time">
   </div>
 
   <div class="form-group">
     <label for="notes">Notes</label>
-    <br/>
-    <input type="text" id="notes" class="form-control" id="notes" placeholder="Notes From Visit" name="notes">
+    <input type="text" class="form-control" id="notes" placeholder="Notes From Visit" name="notes">
   </div>
 
   <fieldset class="form-group">
-    <legend class="col-form-label">Was the job fully completed?</legend>
+    <legend class="col-form-label" id="completedtext">Was the job fully completed?</legend>
     <div class="form-check form-check-inline">
       <input class="form-check-input" type="radio" id="completedYes" name ="completed" value="true">
       <label class="form-check-label" for="completedYes">Yes</label>
@@ -87,6 +85,7 @@ const timesheetForm = () => {
     };
 console.log("request body: ", requestBody); 
 
+console.log("visitId:: ", $("#visit")); 
 $("requestbody").append(requestBody);
 
 

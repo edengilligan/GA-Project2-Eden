@@ -868,80 +868,7 @@ try {
   Function("r", "regeneratorRuntime = r")(runtime);
 }
 
-},{}],"src/user/newUser.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = void 0;
-
-var _loginUser = _interopRequireDefault(require("./loginUser"));
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
-var form = "\n  <form id=\"new-user\">\n  <h1>New Staff Registration</h1>\n    <div class=\"form-group\">\n      <label for=\"username\">Username</label>\n      <input type=\"text\" class=\"form-control\" placeholder=\"Please enter username\" name=\"username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" placeholder=\"Please enter password\" name=\"password\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n";
-
-var newUser = function newUser() {
-  $(document).on("submit", "#new-user", /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-      var formData, response;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              event.preventDefault(); // Extract user name and password from the form
-
-              formData = {
-                username: $("input[name='username']").val(),
-                password: $("input[name='password']").val()
-              };
-              _context.prev = 2;
-              _context.next = 5;
-              return $.ajax({
-                type: "POST",
-                url: "/api/users/register",
-                contentType: "application/json",
-                data: JSON.stringify(formData)
-              });
-
-            case 5:
-              response = _context.sent;
-              // Clear form by calling empty function
-              $("body").empty(); // Append the login form so user can now login
-
-              $("body").append((0, _loginUser.default)());
-              _context.next = 13;
-              break;
-
-            case 10:
-              _context.prev = 10;
-              _context.t0 = _context["catch"](2);
-              // Inform user that their login could not be created if there's an error
-              $("body").append("<div>Could not create user</div>");
-
-            case 13:
-            case "end":
-              return _context.stop();
-          }
-        }
-      }, _callee, null, [[2, 10]]);
-    }));
-
-    return function (_x) {
-      return _ref.apply(this, arguments);
-    };
-  }());
-  return form;
-};
-
-var _default = newUser;
-exports.default = _default;
-},{"./loginUser":"src/user/loginUser.js"}],"src/timesheetForm.js":[function(require,module,exports) {
+},{}],"src/timesheetForm.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -953,7 +880,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var form = "\n\n<form>\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p> \n    <input type=\"text\" id=\"jobid\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <br/>\n    <input type=\"text\" id=\"staff\" class=\"form-control\" id=\"name\" placeholder=\"Enter staff names\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <br/>\n    <input type=\"text\" id=\"time\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <br/>\n    <input type=\"text\" id=\"notes\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
+var form = "\n\n<form>\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p>\n    <input type=\"text\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter Staff Names\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\" id=\"completedtext\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
 
 var timesheetForm = function timesheetForm() {
   // This logic below gets all categories and loads it in the dropdown
@@ -993,9 +920,10 @@ var timesheetForm = function timesheetForm() {
                 visitId: $("#visit").val()
               };
               console.log("request body: ", requestBody);
+              console.log("visitId:: ", $("#visit"));
               $("requestbody").append(requestBody); //Make a POST request to the server to create a fruit
 
-              _context.next = 6;
+              _context.next = 7;
               return $.ajax({
                 type: "POST",
                 url: "/api/timesheet/new-timesheet",
@@ -1003,12 +931,12 @@ var timesheetForm = function timesheetForm() {
                 data: JSON.stringify(requestBody)
               });
 
-            case 6:
+            case 7:
               response = _context.sent;
               // Create a pop up alert in the UI to inform the user that fruit was created
               window.alert("Timesheet Created!");
 
-            case 8:
+            case 9:
             case "end":
               return _context.stop();
           }
@@ -1102,7 +1030,7 @@ var timesheetForm = function timesheetForm() {
 
 var _default = timesheetForm;
 exports.default = _default;
-},{}],"src/user/loginUser.js":[function(require,module,exports) {
+},{}],"src/user/newUser.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1124,7 +1052,94 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 I've added a button in this form to allow a first time user to register
 Clicking on the Register New User button loads the newUser.js form
 */
-var form = "\n  <form id=\"login-user\">\n  <h4>Staff Portal Login</h4>\n    <div class=\"form-group\">\n      <label for=\"Staff username\">Username</label>\n      <input type=\"text\" id=\"username\" class=\"form-control\" placeholder=\"Please enter username\" name=\"username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" id=\"password\" class=\"form-control\" placeholder=\"Please enter password\" name=\"password\">\n    </div>\n    <button id=\"enter\" type=\"submit\" class=\"btn btn-primary\">Submit</button>\n  </form>\n  <button id=\"register-new-user\" class=\"btn btn-primary\">Register</button>\n";
+var form = "\n  <form id=\"login-user\">\n  <h1>Staff Portal Login</h1>\n    <div class=\"form-group\">\n      <label for=\"Staff username\">Username</label>\n      <input type=\"text\" class=\"form-control\" placeholder=\"Please enter username\" name=\"username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" placeholder=\"Please enter password\" name=\"password\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\" id=\"submit-button\">Submit</button>\n  </form>\n  <button id=\"register-new-user\" class=\"btn btn-primary\">Register</button>\n";
+
+var loginUser = function loginUser() {
+  $(document).on("submit", "#login-user", /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+      var formData, response;
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              event.preventDefault(); // Extract username and password entered
+
+              formData = {
+                username: $("input[name='username']").val(),
+                password: $("input[name='password']").val()
+              }; // Make a call to validate user name and password
+
+              _context.prev = 2;
+              _context.next = 5;
+              return $.ajax({
+                type: "POST",
+                url: "/api/users/login",
+                contentType: "application/json",
+                data: JSON.stringify(formData)
+              });
+
+            case 5:
+              response = _context.sent;
+              // Clear current login form as login is successful by calling empty() function
+              $("body").empty(); // Append the fruit form to the body allowing the user to create/update/delete fruits
+
+              $("body").append((0, _timesheetForm.default)());
+              _context.next = 13;
+              break;
+
+            case 10:
+              _context.prev = 10;
+              _context.t0 = _context["catch"](2);
+              // If there's a problem logging in, then add a message to let user know that an invalid combination was provided
+              $("body").append("<div>Invalid user/pass provided!</div>");
+
+            case 13:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[2, 10]]);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }());
+  return form;
+}; // Add event listener for Register new user button being clicked
+
+
+$(document).on("click", "#register-new-user", function () {
+  // Clear current login form
+  $("body").empty(); // Append new user form instead
+
+  $("body").append((0, _newUser.default)());
+});
+var _default = loginUser;
+exports.default = _default;
+},{"./newUser":"src/user/newUser.js","../timesheetForm":"src/timesheetForm.js"}],"src/user/loginUser.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _newUser = _interopRequireDefault(require("./newUser"));
+
+var _timesheetForm = _interopRequireDefault(require("../timesheetForm"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+/*
+I've added a button in this form to allow a first time user to register
+Clicking on the Register New User button loads the newUser.js form
+*/
+var form = "\n  <form id=\"login-user\">\n  <h1>Staff Portal Login</h1>\n    <div class=\"form-group\">\n      <label for=\"Staff username\">Username</label>\n      <input type=\"text\" class=\"form-control\" placeholder=\"Please enter username\" name=\"username\">\n    </div>\n    <div class=\"form-group\">\n      <label for=\"password\">Password</label>\n      <input type=\"password\" class=\"form-control\" placeholder=\"Please enter password\" name=\"password\">\n    </div>\n    <button type=\"submit\" class=\"btn btn-primary\" id=\"submit-button\">Submit</button>\n  </form>\n  <button id=\"register-new-user\" class=\"btn btn-primary\">Register</button>\n";
 
 var loginUser = function loginUser() {
   $(document).on("submit", "#login-user", /*#__PURE__*/function () {
@@ -1227,7 +1242,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61985" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63986" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
