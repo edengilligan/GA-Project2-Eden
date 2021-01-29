@@ -43,7 +43,7 @@ const loginUser = () => {
 
       // Clear current login form as login is successful by calling empty() function
       $("body").empty();
-
+      
       // Append the fruit form to the body allowing the user to create/update/delete fruits
       $("body").append(fruitForm());
     } catch (err) {

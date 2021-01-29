@@ -1,7 +1,7 @@
 
 const form = `
 
-<form>
+<form id="timesheetId">
 <h1>Client Timesheet</h1>
 <div class="form-group">
   <div class="form-group">
@@ -57,6 +57,7 @@ const timesheetForm = () => {
     type: "GET",
     url: "/api/timesheet/visitId/all",
   }).done((visitId) => {
+    console.log("Visit ID: ", visitId);
     let optionsHtml = "";
     /*
     Iterate over all categories
@@ -85,7 +86,9 @@ const timesheetForm = () => {
     };
 console.log("request body: ", requestBody); 
 
-console.log("visitId:: ", $("#visit")); 
+
+console.log("JobId: ", requestBody.visitId); 
+$("jobId").prepend(requestBody.visitId);
 $("requestbody").append(requestBody);
 
 

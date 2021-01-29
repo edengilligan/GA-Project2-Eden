@@ -1,5 +1,6 @@
 import newUser from "./newUser";
 import fruitForm from "../timesheetForm";
+import list from "../list"; 
 
 /*
 I've added a button in this form to allow a first time user to register
@@ -45,6 +46,7 @@ const loginUser = () => {
       $("body").empty();
 
       // Append the fruit form to the body allowing the user to create/update/delete fruits
+      $("body").append(list());
       $("body").append(fruitForm());
     } catch (err) {
       // If there's a problem logging in, then add a message to let user know that an invalid combination was provided

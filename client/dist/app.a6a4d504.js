@@ -880,7 +880,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var form = "\n\n<form>\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p>\n    <input type=\"text\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter Staff Names\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\" id=\"completedtext\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
+var form = "\n\n<form id=\"timesheetId\">\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p>\n    <input type=\"text\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Staff Attendance</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter Staff Names\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\" id=\"completedtext\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
 
 var timesheetForm = function timesheetForm() {
   // This logic below gets all categories and loads it in the dropdown
@@ -889,6 +889,7 @@ var timesheetForm = function timesheetForm() {
     type: "GET",
     url: "/api/timesheet/visitId/all"
   }).done(function (visitId) {
+    console.log("Visit ID: ", visitId);
     var optionsHtml = "";
     /*
     Iterate over all categories
@@ -920,10 +921,11 @@ var timesheetForm = function timesheetForm() {
                 visitId: $("#visit").val()
               };
               console.log("request body: ", requestBody);
-              console.log("visitId:: ", $("#visit"));
+              console.log("JobId: ", requestBody.visitId);
+              $("jobId").prepend(requestBody.visitId);
               $("requestbody").append(requestBody); //Make a POST request to the server to create a fruit
 
-              _context.next = 7;
+              _context.next = 8;
               return $.ajax({
                 type: "POST",
                 url: "/api/timesheet/new-timesheet",
@@ -931,12 +933,12 @@ var timesheetForm = function timesheetForm() {
                 data: JSON.stringify(requestBody)
               });
 
-            case 7:
+            case 8:
               response = _context.sent;
               // Create a pop up alert in the UI to inform the user that fruit was created
               window.alert("Timesheet Created!");
 
-            case 9:
+            case 10:
             case "end":
               return _context.stop();
           }
@@ -1117,7 +1119,89 @@ $(document).on("click", "#register-new-user", function () {
 });
 var _default = loginUser;
 exports.default = _default;
-},{"./newUser":"src/user/newUser.js","../timesheetForm":"src/timesheetForm.js"}],"src/user/loginUser.js":[function(require,module,exports) {
+},{"./newUser":"src/user/newUser.js","../timesheetForm":"src/timesheetForm.js"}],"src/task.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var taskForm = function taskForm(task) {
+  console.log("task page", task);
+  console.log("task name: ", task.name);
+  var form = "\n    <form id = \"taskForm\">\n    <table class=\"styled-table\">\n    <th>Project Name : ".concat(task.name, "</th>\n    <tr>\n      <th>Name</th>\n      <th>Status</th>\n      <th>Date</th>\n      <th>Comment</th>\n      <th>Action</th>\n      <th></th>\n    </tr>\n    <tr>\n      <td> ").concat(task.name, " </td>\n      <td> ").concat(task.status, "</td>\n      <td> ").concat(task.date, "</td>\n      <td> ").concat(task.comment, "</td>\n      <td>\n          <i class=\"material-icons button edit\">edit</i>\n          </td>\n          <td>\n          <i class=\"material-icons button delete\">delete</i>\n        </td>\n    </tr>\n    </table>\n    </form>\n      ");
+  return form;
+};
+
+var _default = taskForm;
+exports.default = _default;
+},{}],"src/list.js":[function(require,module,exports) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+var _task = _interopRequireDefault(require("./task"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var form = "\n<form id = \"timesheetForm\" >\n<div class=\"form-group\">\n<label for=\"projectId\">Project name</label>\n<select name=\"timesheet\" id=\"timesheets\"></select>\n</div>\n<button type=\"submit\" class=\"btn\">show Tasks</button>\n\n</form>\n<ul id=\"tasksList\" ></ul>\n<div id=\"taskDetail\"></div>\n\n";
+
+var list = function list() {
+  console.log("list", list);
+  $.ajax({
+    type: "GET",
+    url: "/api/timesheet/all"
+  }).done(function (timesheets) {
+    console.log("timesheets: ", timesheets);
+    var optionsHtml = "";
+    timesheets.forEach(function (timesheetEl) {
+      console.log("timesheetEl: ", timesheetEl);
+      optionsHtml += "<option value=".concat(timesheetEl._id, ">").concat(timesheetEl.name, "</option>");
+      console.log("optionsHtml", optionsHtml);
+    });
+    console.log("optionsHtml", optionsHtml);
+    $("#timesheets").append(optionsHtml);
+  });
+  $(document).on("submit", "#timesheetForm", function (e) {
+    e.preventDefault();
+    console.log($("#timesheets").val());
+    var projectId = $("#timesheets").val();
+    $.ajax({
+      type: "GET",
+      url: "/api//project/getById/".concat(projectId)
+    }).done(function (tasks) {
+      $("#tasksList").empty();
+      tasks.forEach(function (task) {
+        var taskHtml = $("<li>".concat(task.name, "</li>"));
+        taskHtml.on("click", function () {
+          console.log("id: ", task);
+          var detail = (0, _task.default)(task);
+          console.log("detail: ", detail);
+          $("#taskDetail").empty();
+          $("#taskDetail").append(detail);
+        });
+        $("#tasksList").append(taskHtml);
+      });
+    });
+    var response = $.ajax({
+      type: "Patch",
+      // OR GET
+      url: "/api//project/update/".concat(projectId),
+      contentType: "application/json",
+      data: JSON.stringify(response)
+    });
+    console.log("This is the response I get back!: ".concat(response));
+  });
+  return form;
+};
+
+var _default = list;
+exports.default = _default;
+},{"./task":"src/task.js"}],"src/user/loginUser.js":[function(require,module,exports) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -1128,6 +1212,8 @@ exports.default = void 0;
 var _newUser = _interopRequireDefault(require("./newUser"));
 
 var _timesheetForm = _interopRequireDefault(require("../timesheetForm"));
+
+var _list = _interopRequireDefault(require("../list"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -1170,22 +1256,23 @@ var loginUser = function loginUser() {
               // Clear current login form as login is successful by calling empty() function
               $("body").empty(); // Append the fruit form to the body allowing the user to create/update/delete fruits
 
+              $("body").append((0, _list.default)());
               $("body").append((0, _timesheetForm.default)());
-              _context.next = 13;
+              _context.next = 14;
               break;
 
-            case 10:
-              _context.prev = 10;
+            case 11:
+              _context.prev = 11;
               _context.t0 = _context["catch"](2);
               // If there's a problem logging in, then add a message to let user know that an invalid combination was provided
               $("body").append("<div>Invalid user/pass provided!</div>");
 
-            case 13:
+            case 14:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[2, 10]]);
+      }, _callee, null, [[2, 11]]);
     }));
 
     return function (_x) {
@@ -1204,7 +1291,7 @@ $(document).on("click", "#register-new-user", function () {
 });
 var _default = loginUser;
 exports.default = _default;
-},{"./newUser":"src/user/newUser.js","../timesheetForm":"src/timesheetForm.js"}],"src/app.js":[function(require,module,exports) {
+},{"./newUser":"src/user/newUser.js","../timesheetForm":"src/timesheetForm.js","../list":"src/list.js"}],"src/app.js":[function(require,module,exports) {
 "use strict";
 
 require("regenerator-runtime/runtime");
@@ -1242,7 +1329,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63986" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55895" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
