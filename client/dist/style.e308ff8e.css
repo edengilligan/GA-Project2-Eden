@@ -1,94 +1,49 @@
+#login-user {
+  text-align: center;
+background-color: #FFFAEE;
+color: #89714E;
+font-family: 'Playfair Display', serif;
+}
+
+.form-group {
+  background-color: #FFFAEE;
+  text-align: center;  
+}
+
 
 body {
-    text-align: center;
-    background-color: #FFFAEE;
-    color: #89714E;
-    font-family: 'Playfair Display', serif;
+  text-align: center;
+  background-color: #FFFAEE;
+  color: #89714E;
+  font-family: 'Playfair Display', serif;
 }
 
-#create-timesheet {
-    background-color: #89714E;
-    border: none;
-  color: #FFFAEE;
-  padding: 15px;
+.form-group {
+  color: #89714E;
+  width: 80%;
+  padding-left: 20%;
   text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  border-radius: 50%;
-} 
+}
 
-#delete-timesheet {
-background-color: #89714E;
+::placeholder {
+  text-align: center;
+}
+
+#completedtext {
+  text-align: center;
+  padding-left: 35%;
+}
+
+#create-timesheet, #update-timesheet, #delete-timesheet, #submit-button, #register-new-user, #new-button {
+  background-color: #89714E;
   border: none;
   color: #FFFAEE;
   padding: 15px;
   text-align: center;
-  display: inline-block;
+
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 50%;
-} 
-
-#update-timesheet {
-    background-color: #89714E;
-  border: none;
-  color: #FFFAEE;
-  padding: 15px;
-  text-align: center;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  border-radius: 50%;
-} 
-
-#register-new-user {
-    background-color: #89714E;
-    border: none;
-    color: #FFFAEE;
-    padding: 15px;
-    text-align: center;
-
-    font-size: 16px;
-    margin: 4px 2px;
-    border-radius: 50%;
-}
-
-#enter {
-    background-color: #89714E;
-    border: none;
-    color: #FFFAEE;
-    padding: 15px;
-    text-align: center;
-
-    font-size: 16px;
-    margin: 4px 2px;
-    border-radius: 50%;
-}
-
-#password {
-width: 200px;
-text-align: center;
-display: inline-block;
-}
-
-#username {
-width: 200px;
-text-align: center;
-display: inline-block;
-}
-
-h4 {
-    padding-top: 3%;
-    padding-bottom: 2%;
-}
-
-#jobid, #staff, #time, #notes {
-    width: 300px;
-    display: inline-block;  
-    text-align: center;
-
-     
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

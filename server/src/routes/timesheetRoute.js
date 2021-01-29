@@ -1,5 +1,5 @@
 const express = require("express");
-const FruitModel = require("../models/TimesheetModel");
+const timesheetModel = require("../models/TimesheetModel");
 const VisitIdModel = require("../models/VisitIDModel");
 
 // Create a new router to handle fruits routes
@@ -13,7 +13,7 @@ router.get("/_health", (request, response) => {
 
 // Get all fruits
 router.get("/all", (request, response) => {
-  FruitModel.find()
+  timesheetModel.find()
     .populate("visitId")
     .then((timesheet) => {
       response.send(timesheet);
@@ -28,7 +28,7 @@ router.post("/new-timesheet", (request, response) => {
   // Extract your request body
   const requestBody = request.body;
   // Call your database and add that fruit object to your collection
-  FruitModel.create(requestBody).then((data) => {
+  timesheetModel.create(requestBody).then((data) => {
     console.log(data);
     response.send("This timesheet was added successfully!");
   });
@@ -40,7 +40,7 @@ router.post("/new-timesheet", (request, response) => {
 // upsert -> if true, add a new entry if id doesn't exist, if false -> throw an error
 
 router.patch("/update-timesheet/:id", (request, response) => {
-  FruitModel.findByIdAndUpdate(request.params.id, request.body, {
+  timesheetModel.findByIdAndUpdate(request.params.id, request.body, {
     new: true,
     upsert: true,
   })
@@ -56,7 +56,7 @@ router.patch("/update-timesheet/:id", (request, response) => {
 
 // delete route
 router.delete("/delete-timesheet/:id", (request, response) => {
-  FruitModel.findByIdAndDelete(request.params.id)
+  timesheetModel.findByIdAndDelete(request.params.id)
     .then((data) => {
       console.log("Deleted successfully!");
       response.send(data);
