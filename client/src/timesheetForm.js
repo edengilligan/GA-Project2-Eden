@@ -1,3 +1,4 @@
+import list from './list'
 
 const form = `
 
@@ -7,12 +8,12 @@ const form = `
   <div class="form-group">
     <label for="jobId">Job ID</label>
     <p>Use this to update or delete an exsiting timesheet</p>
-    <input type="text" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
+    <input type="hidden" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
     
   </div>
 
-    <label for="name">Staff Attendance</label>
-    <input type="text" class="form-control" id="name" placeholder="Enter Staff Names" name="name">
+    <label for="name">Client Name</label>
+    <input type="text" class="form-control" id="name" placeholder="Enter Client Name" name="name">
     
   </div>
 
@@ -51,7 +52,7 @@ const form = `
 
 const timesheetForm = () => {
   // This logic below gets all categories and loads it in the dropdown
-
+  $("body").append(list());
   // Call server using AJAX to get all categories
   const visitResponse = $.ajax({
     type: "GET",
@@ -100,6 +101,8 @@ $("requestbody").append(requestBody);
       data: JSON.stringify(requestBody),
     });
 
+    $('#timesheetDrop').remove();
+    $('body').prepend(list()); 
     // Create a pop up alert in the UI to inform the user that fruit was created
     window.alert("Timesheet Created!");
   });

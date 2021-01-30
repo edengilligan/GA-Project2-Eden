@@ -1,8 +1,7 @@
-import taskForm from "./task"
 
 
 const form = `
-<form id = "timesheetForm" >
+<form id = "timesheetDrop" >
 <div class="form-group">
 <label for="projectId">Project name</label>
 <select name="timesheet" id="timesheets"></select>
@@ -10,8 +9,7 @@ const form = `
 <button type="submit" class="btn">show Tasks</button>
 
 </form>
-<ul id="tasksList" ></ul>
-<div id="taskDetail"></div>
+
 
 `;
 const list = () => {
@@ -32,37 +30,33 @@ const list = () => {
   });
 
 
-  $(document).on("submit", "#timesheetForm", (e) => {
+  $(document).on("submit", "#timesheetDrop", (e) => {
     e.preventDefault();
     console.log($("#timesheets").val());
-    const projectId = $("#timesheets").val();
+    const timesheetId = $("#timesheets").val();
     $.ajax({
       type: "GET",
-      url: `/api//project/getById/${projectId}`,
-    }).done((tasks) => {
-      $("#tasksList").empty();
-
-      tasks.forEach((task) => {
-        const taskHtml = $(`<li>${task.name}</li>`);
-
-        taskHtml.on("click", () => {
-          console.log("id: ", task);
-          const detail = taskForm(task);
-          console.log("detail: ", detail);
-          $("#taskDetail").empty();
-          $("#taskDetail").append(detail);
-        });
-        $("#tasksList").append(taskHtml);
-
-      });
+      url: `/api/timesheet/${timesheetId}`,
+    }).done((timesheet) => {
+      console.log("timesheet: ", timesheet); 
+      $("input[name='jobId']").val(timesheet._id)
+      $("input[name='name']").val(timesheet.name)
+      $("input[name='time']").val(timesheet.time)
+      $("input[name='notes']").val(timesheet.notes)
+      // if(timesheet.completed) {
+      //   $("#completedYes").prop('checked', true) 
+      // } else {
+      //   $("#completedNo").prop('checked', true) 
+      // }
+      timesheet.completed ? $("#completedYes").prop('checked', true) : $("#completedNo").prop('checked', true)
+      $("select[name='visitId']").val(timesheet.visitId)
     });
-    const response = $.ajax({
-      type: "Patch", // OR GET
-      url: `/api//project/update/${projectId}`,
-      contentType: "application/json",
-      data: JSON.stringify(response),
-    });
-    console.log(`This is the response I get back!: ${response}`);
+    // const response = $.ajax({
+    //   type: "Patch", // OR GET
+    //   url: `/api//project/update/${projectId}`,
+    //   contentType: "application/json",
+    //   data: JSON.stringify(response),
+    // });
 
   });
   return form;
