@@ -94,4 +94,10 @@ router.get("/visitId/all", (request, response) => {
     });
 });
 
+router.get("/:timesheetId", (request, response) => {
+  timesheetModel.findById(request.params.timesheetId).then((timesheet) => {
+response.send(timesheet); 
+  })
+})
+
 module.exports = router;

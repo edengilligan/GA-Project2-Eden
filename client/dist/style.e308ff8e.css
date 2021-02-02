@@ -34,7 +34,7 @@ body {
   padding-left: 35%;
 }
 
-#create-timesheet, #update-timesheet, #delete-timesheet, #submit-button, #register-new-user, #new-button {
+#create-timesheet, #update-timesheet, #delete-timesheet, #submit-button, #register-new-user, #new-button, #task {
   background-color: #89714E;
   border: none;
   color: #FFFAEE;
@@ -44,6 +44,10 @@ body {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 50%;
+}
+
+#filtered {
+  padding-top: 5%;
 }
 
 /*# sourceMappingURL=/style.e308ff8e.css.map */

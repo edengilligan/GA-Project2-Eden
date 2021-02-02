@@ -1,5 +1,5 @@
 import newUser from "./newUser";
-import fruitForm from "../timesheetForm";
+import timesheetForm from "../timesheetForm";
 
 /*
 I've added a button in this form to allow a first time user to register
@@ -17,9 +17,9 @@ const form = `
       <label for="password">Password</label>
       <input type="password" class="form-control" placeholder="Please enter password" name="password">
     </div>
-    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
+    <button type="submit" class="btn btn-primary" id="submit-button">Register</button>
   </form>
-  <button id="register-new-user" class="btn btn-primary">Register</button>
+  
 `;
 
 const loginUser = () => {
@@ -36,16 +36,16 @@ const loginUser = () => {
     try {
       const response = await $.ajax({
         type: "POST",
-        url: "/api/users/login",
+        url: "/api/users/register",
         contentType: "application/json",
         data: JSON.stringify(formData),
       });
 
       // Clear current login form as login is successful by calling empty() function
       $("body").empty();
-
+      
       // Append the fruit form to the body allowing the user to create/update/delete fruits
-      $("body").append(fruitForm());
+      $("body").append(timesheetForm());
     } catch (err) {
       // If there's a problem logging in, then add a message to let user know that an invalid combination was provided
       $("body").append("<div>Invalid user/pass provided!</div>");
@@ -54,13 +54,13 @@ const loginUser = () => {
   return form;
 };
 
-// Add event listener for Register new user button being clicked
-$(document).on("click", "#register-new-user", () => {
-  // Clear current login form
-  $("body").empty();
+// // Add event listener for Register new user button being clicked
+// $(document).on("click", "#register-new-user", () => {
+//   // Clear current login form
+//   $("body").empty();
 
-  // Append new user form instead
-  $("body").append(newUser());
-});
+//   // Append new user form instead
+//   $("body").append(newUser());
+// });
 
 export default loginUser;
