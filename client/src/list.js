@@ -3,7 +3,7 @@
 const form = `
 <form id = "timesheetDrop" >
 <div class="form-group">
-<label for="projectId" id="filtered">Previous Timesheets Filtered By Staff Name</label>
+<label for="projectId" id="filtered">Previous Timesheets Filtered By Client Name</label>
 <select name="timesheet" id="timesheets"></select>
 </div>
 <button type="submit" id="task" class="btn btn-primary">Show</button>

@@ -875,7 +875,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var form = "\n<form id = \"timesheetDrop\" >\n<div class=\"form-group\">\n<label for=\"projectId\" id=\"filtered\">Previous Timesheets Filtered By Staff Name</label>\n<select name=\"timesheet\" id=\"timesheets\"></select>\n</div>\n<button type=\"submit\" id=\"task\" class=\"btn btn-primary\">Show</button>\n</form>\n";
+var form = "\n<form id = \"timesheetDrop\" >\n<div class=\"form-group\">\n<label for=\"projectId\" id=\"filtered\">Previous Timesheets Filtered By Client Name</label>\n<select name=\"timesheet\" id=\"timesheets\"></select>\n</div>\n<button type=\"submit\" id=\"task\" class=\"btn btn-primary\">Show</button>\n</form>\n";
 
 var list = function list() {
   console.log("list", list);
@@ -954,7 +954,7 @@ var timesheetForm = function timesheetForm() {
       optionsHtml += "<option value=".concat(timesheetEl._id, ">").concat(timesheetEl.name, "</option>");
     });
     $("#visit").append(optionsHtml);
-  }); // Event listener to for Create Fruit Button
+  }); // Event listener to for Create Button
 
   $(document).on("click", "#create-timesheet", /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(e) {
@@ -975,7 +975,7 @@ var timesheetForm = function timesheetForm() {
               console.log("request body: ", requestBody);
               console.log("JobId: ", requestBody.visitId);
               $("jobId").prepend(requestBody.visitId);
-              $("requestbody").append(requestBody); //Make a POST request to the server to create a fruit
+              $("requestbody").append(requestBody); //Make a POST request to the server to create 
 
               _context.next = 8;
               return $.ajax({
@@ -988,7 +988,7 @@ var timesheetForm = function timesheetForm() {
             case 8:
               response = _context.sent;
               $('#timesheetDrop').remove();
-              $('body').prepend((0, _list.default)()); // Create a pop up alert in the UI to inform the user that fruit was created
+              $('body').prepend((0, _list.default)()); // Create a pop up alert in the UI to inform the user that a timesheet was created
 
               window.alert("Timesheet Created!");
 
@@ -1003,7 +1003,7 @@ var timesheetForm = function timesheetForm() {
     return function (_x) {
       return _ref.apply(this, arguments);
     };
-  }()); // Event listener to for Update Fruit Button
+  }()); // Event listener to for Update Button
 
   $(document).on("click", "#update-timesheet", /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(e) {
@@ -1020,7 +1020,7 @@ var timesheetForm = function timesheetForm() {
                 notes: $("#notes").val(),
                 completed: $("input[name=\"completed\"]:checked").val(),
                 visitId: $("#visit").val()
-              }; // Make a PATCH request to the server to update a fruit
+              }; // Make a PATCH request to the server to update
 
               _context2.next = 4;
               return $.ajax({
@@ -1032,7 +1032,7 @@ var timesheetForm = function timesheetForm() {
 
             case 4:
               response = _context2.sent;
-              // Create a pop up alert in the UI to inform the user that fruit was updated
+              // Create a pop up alert in the UI to inform the user that timesheet was updated
               window.alert("Timesheet Updated!");
 
             case 6:
@@ -1046,7 +1046,7 @@ var timesheetForm = function timesheetForm() {
     return function (_x2) {
       return _ref2.apply(this, arguments);
     };
-  }()); // Event listener to for Delete Fruit Button
+  }()); // Event listener to for Delete Button
 
   $(document).on("click", "#delete-timesheet", /*#__PURE__*/function () {
     var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(e) {
@@ -1055,7 +1055,7 @@ var timesheetForm = function timesheetForm() {
         while (1) {
           switch (_context3.prev = _context3.next) {
             case 0:
-              e.preventDefault(); // Make a DELETE request to the server to delete a fruit
+              e.preventDefault(); // Make a DELETE request to the server to delete
 
               _context3.next = 3;
               return $.ajax({
@@ -1066,7 +1066,7 @@ var timesheetForm = function timesheetForm() {
 
             case 3:
               response = _context3.sent;
-              // Create a pop up alert in the UI to inform the user that fruit was deleted
+              // Create a pop up alert in the UI to inform the user that a timesheet was deleted
               window.alert("Timesheet Deleted!");
 
             case 5:

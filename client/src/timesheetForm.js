@@ -71,7 +71,7 @@ const timesheetForm = () => {
     $("#visit").append(optionsHtml);
   });
 
-  // Event listener to for Create Fruit Button
+  // Event listener to for Create Button
   $(document).on("click", "#create-timesheet", async (e) => {
     e.preventDefault();
 
@@ -91,7 +91,7 @@ $("jobId").prepend(requestBody.visitId);
 $("requestbody").append(requestBody);
 
 
-    //Make a POST request to the server to create a fruit
+    //Make a POST request to the server to create 
     const response = await $.ajax({
       type: "POST",
       url: "/api/timesheet/new-timesheet",
@@ -101,11 +101,11 @@ $("requestbody").append(requestBody);
 
     $('#timesheetDrop').remove();
     $('body').prepend(list()); 
-    // Create a pop up alert in the UI to inform the user that fruit was created
+    // Create a pop up alert in the UI to inform the user that a timesheet was created
     window.alert("Timesheet Created!");
   });
 
-  // Event listener to for Update Fruit Button
+  // Event listener to for Update Button
   $(document).on("click", "#update-timesheet", async (e) => {
     e.preventDefault();
 
@@ -118,7 +118,7 @@ $("requestbody").append(requestBody);
       visitId: $("#visit").val(),
     };
 
-    // Make a PATCH request to the server to update a fruit
+    // Make a PATCH request to the server to update
     const response = await $.ajax({
       type: "PATCH",
       url: `/api/timesheet/update-timesheet/${$("#jobId").val()}`,
@@ -126,22 +126,22 @@ $("requestbody").append(requestBody);
       data: JSON.stringify(requestBody),
     });
 
-    // Create a pop up alert in the UI to inform the user that fruit was updated
+    // Create a pop up alert in the UI to inform the user that timesheet was updated
     window.alert("Timesheet Updated!");
   });
 
-  // Event listener to for Delete Fruit Button
+  // Event listener to for Delete Button
   $(document).on("click", "#delete-timesheet", async (e) => {
     e.preventDefault();
 
-    // Make a DELETE request to the server to delete a fruit
+    // Make a DELETE request to the server to delete
     const response = await $.ajax({
       type: "DELETE",
       url: `/api/timesheet/delete-timesheet/${$("#jobId").val()}`,
       contentType: "application/json",
     });
 
-    // Create a pop up alert in the UI to inform the user that fruit was deleted
+    // Create a pop up alert in the UI to inform the user that a timesheet was deleted
     window.alert("Timesheet Deleted!");
   });
 
