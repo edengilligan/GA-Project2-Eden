@@ -6,8 +6,6 @@ const form = `
 <h1>Client Timesheet</h1>
 <div class="form-group">
   <div class="form-group">
-    <label for="jobId">Job ID</label>
-    <p>Use this to update or delete an exsiting timesheet</p>
     <input type="hidden" class="form-control" id="jobId" placeholder="Enter Job ID" name="jobId">
     
   </div>

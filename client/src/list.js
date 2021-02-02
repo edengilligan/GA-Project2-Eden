@@ -3,14 +3,11 @@
 const form = `
 <form id = "timesheetDrop" >
 <div class="form-group">
-<label for="projectId">Project name</label>
+<label for="projectId" id="filtered">Previous Timesheets Filtered By Staff Name</label>
 <select name="timesheet" id="timesheets"></select>
 </div>
-<button type="submit" class="btn">show Tasks</button>
-
+<button type="submit" id="task" class="btn btn-primary">Show</button>
 </form>
-
-
 `;
 const list = () => {
     console.log("list", list); 
@@ -43,20 +40,11 @@ const list = () => {
       $("input[name='name']").val(timesheet.name)
       $("input[name='time']").val(timesheet.time)
       $("input[name='notes']").val(timesheet.notes)
-      // if(timesheet.completed) {
-      //   $("#completedYes").prop('checked', true) 
-      // } else {
-      //   $("#completedNo").prop('checked', true) 
-      // }
+
       timesheet.completed ? $("#completedYes").prop('checked', true) : $("#completedNo").prop('checked', true)
       $("select[name='visitId']").val(timesheet.visitId)
     });
-    // const response = $.ajax({
-    //   type: "Patch", // OR GET
-    //   url: `/api//project/update/${projectId}`,
-    //   contentType: "application/json",
-    //   data: JSON.stringify(response),
-    // });
+
 
   });
   return form;

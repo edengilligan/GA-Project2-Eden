@@ -875,7 +875,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = void 0;
-var form = "\n<form id = \"timesheetDrop\" >\n<div class=\"form-group\">\n<label for=\"projectId\">Project name</label>\n<select name=\"timesheet\" id=\"timesheets\"></select>\n</div>\n<button type=\"submit\" class=\"btn\">show Tasks</button>\n\n</form>\n\n\n";
+var form = "\n<form id = \"timesheetDrop\" >\n<div class=\"form-group\">\n<label for=\"projectId\" id=\"filtered\">Previous Timesheets Filtered By Staff Name</label>\n<select name=\"timesheet\" id=\"timesheets\"></select>\n</div>\n<button type=\"submit\" id=\"task\" class=\"btn btn-primary\">Show</button>\n</form>\n";
 
 var list = function list() {
   console.log("list", list);
@@ -905,20 +905,10 @@ var list = function list() {
       $("input[name='jobId']").val(timesheet._id);
       $("input[name='name']").val(timesheet.name);
       $("input[name='time']").val(timesheet.time);
-      $("input[name='notes']").val(timesheet.notes); // if(timesheet.completed) {
-      //   $("#completedYes").prop('checked', true) 
-      // } else {
-      //   $("#completedNo").prop('checked', true) 
-      // }
-
+      $("input[name='notes']").val(timesheet.notes);
       timesheet.completed ? $("#completedYes").prop('checked', true) : $("#completedNo").prop('checked', true);
       $("select[name='visitId']").val(timesheet.visitId);
-    }); // const response = $.ajax({
-    //   type: "Patch", // OR GET
-    //   url: `/api//project/update/${projectId}`,
-    //   contentType: "application/json",
-    //   data: JSON.stringify(response),
-    // });
+    });
   });
   return form;
 };
@@ -941,7 +931,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-var form = "\n\n<form id=\"timesheetId\">\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <label for=\"jobId\">Job ID</label>\n    <p>Use this to update or delete an exsiting timesheet</p>\n    <input type=\"hidden\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Client Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter Client Name\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\" id=\"completedtext\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
+var form = "\n\n<form id=\"timesheetId\">\n<h1>Client Timesheet</h1>\n<div class=\"form-group\">\n  <div class=\"form-group\">\n    <input type=\"hidden\" class=\"form-control\" id=\"jobId\" placeholder=\"Enter Job ID\" name=\"jobId\">\n    \n  </div>\n\n    <label for=\"name\">Client Name</label>\n    <input type=\"text\" class=\"form-control\" id=\"name\" placeholder=\"Enter Client Name\" name=\"name\">\n    \n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"time\">Time Spent On Site</label>\n    <input type=\"text\" class=\"form-control\" id=\"time\" placeholder=\"Arrival/Departure Time\" name=\"time\">\n  </div>\n\n  <div class=\"form-group\">\n    <label for=\"notes\">Notes</label>\n    <input type=\"text\" class=\"form-control\" id=\"notes\" placeholder=\"Notes From Visit\" name=\"notes\">\n  </div>\n\n  <fieldset class=\"form-group\">\n    <legend class=\"col-form-label\" id=\"completedtext\">Was the job fully completed?</legend>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedYes\" name =\"completed\" value=\"true\">\n      <label class=\"form-check-label\" for=\"completedYes\">Yes</label>\n    </div>\n    <div class=\"form-check form-check-inline\">\n      <input class=\"form-check-input\" type=\"radio\" id=\"completedNo\" name =\"completed\" value=\"false\">\n      <label class=\"form-check-label\" for=\"completedNo\">No</label>\n    </div>\n  </fieldset>\n  <div class=\"form-group\">\n    <label for=\"visitId\">Visit Type</label>\n    <select name=\"visitId\" id=\"visit\"></select>\n  </div>\n  <div class=\"form-group\">\n  <button type=\"button\" id=\"create-timesheet\" class=\"btn btn-primary\">Create</button>\n  <button  type=\"button\" id=\"update-timesheet\"  class=\"btn btn-primary\">Update</button>\n  <button  type=\"button\" id=\"delete-timesheet\"  class=\"btn btn-primary\">Delete</button>\n  </form>\n  </div>\n";
 
 var timesheetForm = function timesheetForm() {
   // This logic below gets all categories and loads it in the dropdown
@@ -1311,7 +1301,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64452" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "60084" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
